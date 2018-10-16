@@ -1,10 +1,11 @@
-all: list.o tunes.o testing.o
-	gcc list.o tunes.o testing.o
+all: list.o tunes.o driver.o
+	gcc list.o tunes.o driver.o
 run:
 	./a.out
 
 clean:
 	rm *.o
+	rm a.out
 
 list.o: list.c list.h
 	gcc -c list.c
@@ -13,4 +14,4 @@ tunes.o: tunes.h tunes.c
 	gcc -c tunes.c
 
 driver.o: driver.c
-	gcc -c driver.o
+	gcc -c driver.c

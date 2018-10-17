@@ -27,51 +27,40 @@ struct song_node * insert_front(struct song_node * p, char * n, char * a){
 
 
 struct song_node * insert_order(struct song_node * p, char * n, char * a){
-  struct song_node *new = (struct song_node *)malloc(sizeof(struct song_node));
-  strcpy(new->name, n);
-  strcpy(new->artist,a);
-  if(p == NULL){
-    p = insert_front(p,n,a);
-    return p;
+
+
+  int pos = 0;
+  struct song_node *iter = p;
+
+  struct song_node *add = NULL;
+  while(strcmp(*a,iter->artist)> 0){
+
+    iter = iter -> next;
+    pos++;
   }
-  else{
-    struct song_node *iter = p;
-    struct song_node *onefor = p;
-    if(strcmp(a,p->artist)<= 0){
-      //
-      //perfect case
-      if(strcmp(n,p->name)< 0){
-        p = insert_front(p,n,a);
-        //printf("test");
-        return p;
-      }
-      else{
-        while(strcmp(n,iter->name)>0){
-         iter = iter->next;
-        }
-        iter = iter->next;
-        new = insert_front(iter,n,a);
-        p->next = new;
-        printf("%d",strcmp(n,p->name));
-        return p;
-      }
+
+  add = insert_front(iter,*n,*a)
+  p = combine(p,add,pos);
 
 
+}
+
+struct song_node * combine(struct song_node *p, struct song_node *add, int pos){
+  if(pos){
+    return add;
+  }
+
+  for(;pos>0;pos--){
+    struct song_node *top = p;
+    int cnt = pos;
+    while(cnt){
+      top = top -> next;
+      cnt--;
     }
-    else{
-    while(strcmp(a,iter->artist)>0){
-     iter = iter->next;
-    }
-    iter = iter->next;
-    new = insert_front(iter,n,a);
-    p->next = new;
-    printf("%d",strcmp(a,p->artist));
-    return p;
+    top->next = NULL;
+    add = insert_front(add,top->name,top->artist);
   }
 }
-  }
-
-
 
 
 

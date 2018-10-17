@@ -33,13 +33,14 @@ struct song_node * insert_order(struct song_node * p, char * n, char * a){
   struct song_node *iter = p;
 
   struct song_node *add = NULL;
-  while(strcmp(*a,iter->artist)> 0){
-
+  ;
+  while(strcmp(a,iter->artist)> 0){
+    
     iter = iter -> next;
     pos++;
   }
 
-  add = insert_front(iter,*n,*a)
+  add = insert_front(iter,n,a);
   p = combine(p,add,pos);
 
 
@@ -50,7 +51,7 @@ struct song_node * combine(struct song_node *p, struct song_node *add, int pos){
     return add;
   }
 
-  for(;pos>0;pos--){
+  while(pos){
     struct song_node *top = p;
     int cnt = pos;
     while(cnt){
@@ -59,7 +60,9 @@ struct song_node * combine(struct song_node *p, struct song_node *add, int pos){
     }
     top->next = NULL;
     add = insert_front(add,top->name,top->artist);
+    pos--;
   }
+  return add;
 }
 
 

@@ -18,3 +18,5 @@ struct song_node * insert_front(struct song_node * p, char * n, char * a);
 
 struct song_node * insert_order(struct song_node * p, char * n, char * a);
 struct song_node * free_list(struct song_node *p);
+
+struct song_node * combine(struct song_node *p, struct song_node *add, int pos);

@@ -1,7 +1,11 @@
 all: list.o tunes.o driver.o
 	gcc list.o tunes.o driver.o
 run:
-	./a.out
+	gdb a.out
+
+error: list.o tunes.o driver.o
+	gcc -g list.o tunes.o driver.o
+
 
 clean:
 	rm *.o

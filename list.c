@@ -1,6 +1,5 @@
 #include "list.h"
-#include <stdio.h>
-#include <string.h>
+
 
 void print_list(struct song_node * p){
   struct song_node *hold = p;
@@ -33,7 +32,12 @@ struct song_node * insert_order(struct song_node * p, char * n, char * a){
   struct song_node *iter = p;
 
   struct song_node *add = NULL;
-  ;
+
+  if(p->next->artist ==  NULL){
+    p = insert_front(p,n,a);
+    return p;
+  }
+
   while(strcmp(a,iter->artist)> 0){
     
     iter = iter -> next;
@@ -41,13 +45,14 @@ struct song_node * insert_order(struct song_node * p, char * n, char * a){
   }
 
   add = insert_front(iter,n,a);
-  p = combine(p,add,pos);
-
+  //p = combine(p,add,pos);
+  return p;
 
 }
 
 struct song_node * combine(struct song_node *p, struct song_node *add, int pos){
-  if(pos){
+  
+  if(pos != 0){
     return add;
   }
 

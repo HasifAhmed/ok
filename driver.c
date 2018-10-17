@@ -1,7 +1,8 @@
 #include "tunes.h"
 int main(){
   struct song_node *first = NULL;
-  first = insert_order(first,"Let it Fly","Lil Wayne");
+  char a[10] = "Lil Wayne";
+  first = insert_order(first,"Let it Fly",a);
 
   print_list(first);
   first = insert_order(first,"Mona Lisa","Lil Wayne");

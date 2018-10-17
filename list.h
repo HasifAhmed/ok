@@ -14,9 +14,7 @@ struct song_node * table[27];
 
 void print_list(struct song_node *p );
 
-struct node * insert_front(struct song_node * p, char * n, char * a);
+struct song_node * insert_front(struct song_node * p, char * n, char * a);
 
-struct node * insert_order(char * n, char * a);
-struct node * free_list(struct node *p);
-
-
+struct song_node * insert_order(struct song_node * p, char * n, char * a);
+struct song_node * free_list(struct song_node *p);

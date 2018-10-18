@@ -6,6 +6,8 @@ run:
 error: list.o tunes.o driver.o
 	gcc -g list.o tunes.o driver.o
 
+run2 :
+	./a.out
 
 clean:
 	rm *.o

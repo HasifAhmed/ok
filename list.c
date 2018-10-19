@@ -1,30 +1,25 @@
-#include "list.h"
 
+    if(hold  == NULL){
+      printf("END\n-----------\n");
+    }
+    else {
 
-void print_list(struct song_node * p){
-  struct song_node *hold = p;
-  if(hold  == NULL){
-    printf("END\n-----------\n");
-  }
-  else {
-
-    printf(" %s By %s  ", hold -> name, hold ->artist);
-    print_list(hold -> next);
-  }
-
+      printf("%s By %s => ", hold -> name, hold ->artist);
+      print_list(hold -> next);
+    }
 }
 
-struct song_node * insert_front(struct song_node * p, char * n, char * a){
-  struct song_node *add  = (struct song_node *)malloc(sizeof(struct song_node));
-  add->next = p;
-  strcpy(add->name,n);
-  strcpy(add->artist,a);
-  return add;
-}
+struct song_node * find_node(struct song_node *p, char * n, char * a){
+  struct song_node *iter = p;
+  while(iter->next != NULL ){
 
-
-
-
+    if(strcmp(iter->artist,a) == 0 && strcmp(iter->name,n) == 0){
+      struct song_node *found = calloc(sizeof(struct song_node),1);
+      iter -> next = NULL;
+      found = iter;
+      return found;
+    }
+=======
 struct song_node * insert_order(struct song_node * p, char * n, char * a){
 
   printf("yes");
@@ -69,14 +64,51 @@ struct song_node * combine(struct song_node *p, struct song_node *add, int pos){
   }
   return add;
 }
+>>>>>>> 2254f02608736da926176e202defe0f06ee803b2
+
+    iter = iter -> next;
+
+  }
+  if(strcmp(iter->artist,a) == 0 && strcmp(iter->name,n) == 0 ){
+    struct song_node *found = calloc(sizeof(struct song_node),1);
+    iter -> next = NULL;
+    found = iter;
+    return found;
+  }
+  return NULL;
+
+}
+
+struct song_node * find_first(struct song_node *p, char * a){
+  struct song_node *iter = p;
+  while(iter -> next != NULL){
+    if(strcmp(iter->artist,a)==0){
+      struct song_node * found = calloc(sizeof(struct song_node),1);
+      iter -> next = NULL;
+      found = iter;
+      return found;
+    }
+    iter = iter -> next;
+  }
+  if(strcmp(iter->artist,a) == 0){
+    struct song_node * found = calloc(sizeof(struct song_node),1);
+    iter -> next = NULL;
+    found = iter;
+    return found;
+  }
+  return NULL;
+}
+
+struct song_node * rand_node(struct song_node *p){
+  return p;
+}
+
+struct song_node * remove_node(struct song_node * p, struct song_node * rem){
+  return NULL;
+}
 
 
-
-
-
-
-
-struct song_node * free_list(struct song_node * p){
+void free_list(struct song_node * p){
   struct song_node * hold = p;
   struct song_node *temp = p;
   while(hold){
@@ -86,5 +118,5 @@ struct song_node * free_list(struct song_node * p){
     temp = hold;
 
   }
-  return hold;
+  free(hold);
 }
